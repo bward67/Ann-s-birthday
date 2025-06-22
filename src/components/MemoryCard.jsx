@@ -22,6 +22,26 @@ const MemoryCard = ({ setHasWon }) => {
   const [matched, setMatched] = useState([]); // holds ID's of matched cards
   const [disabled, setDisabled] = useState(false); // to lock flipping while checking for matches
 
+  //! for confetti to fall down to the end of the screen on a phone
+  const [dimensions, setDimensions] = useState({
+    width: window.innerWidth,
+    height: document.documentElement.scrollHeight,
+  });
+
+  useEffect(() => {
+    function handleResize() {
+      setDimensions({
+        width: window.innerWidth,
+        height: document.documentElement.scrollHeight,
+      });
+    }
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   useEffect(() => {
     const doubled = [...data, ...data]; // to get 2 of each
     const shuffled = shuffleArray(
@@ -66,7 +86,9 @@ const MemoryCard = ({ setHasWon }) => {
 
   return (
     <ul className="card-grid">
-      {hasWon && <Confetti />}
+      {hasWon && (
+        <Confetti width={dimensions.width} height={dimensions.height} />
+      )}
       {cards.map((card) => {
         const isFlipped =
           flipped.includes(card.id) || matched.includes(card.id);
