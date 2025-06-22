@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import MemoryCard from "./components/MemoryCard";
 
 const App = () => {
@@ -7,17 +7,26 @@ const App = () => {
 
   const currentYear = new Date().getFullYear();
 
-  function startGame() {
+  function handlePlayAgain() {
     console.log("Game started!");
     setGameKey((prev) => prev + 1); // Increment the key will trigger a full remount of the MemoryCard component
     setHasWon(false); // Reset the win state whe the game restarts
   }
 
+  useEffect(() => {
+    if (hasWon) {
+      window.scrollTo({ top: 0, behavior: "smooth" }); // Scroll to the top of the page when the game is won
+    }
+  }, [hasWon]);
+
   return (
     <div>
       {hasWon ? (
         <>
-          <h2>WINNER WINNER - CHICKEN DINNER!!</h2> <p>Why not Play Again?</p>
+          <h2 className={hasWon ? "bounce" : ""}>
+            WINNER WINNER - CHICKEN DINNER!!
+          </h2>{" "}
+          <p>Why not Play Again?</p>
         </>
       ) : (
         <>
@@ -30,9 +39,11 @@ const App = () => {
         </>
       )}
 
-      <button className="start-game-btn" onClick={startGame}>
-        {hasWon ? "Play Again" : "Start Game"}
-      </button>
+      {hasWon && (
+        <button className="start-game-btn" onClick={handlePlayAgain}>
+          Play Again
+        </button>
+      )}
       <MemoryCard key={gameKey} setHasWon={setHasWon} />
       {/* setting a different key on a component forces it to unmount + remount which resets all its internal state. */}
       <small>

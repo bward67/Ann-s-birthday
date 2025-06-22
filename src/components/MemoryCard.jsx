@@ -72,7 +72,7 @@ const MemoryCard = ({ setHasWon }) => {
       setTimeout(() => {
         setFlipped([]); // reset flipped cards after a delay
         setDisabled(false); // unlock flipping
-      }, 1500); // adjust delay as needed
+      }, 1200); // adjust delay as needed
     }
   }
 
