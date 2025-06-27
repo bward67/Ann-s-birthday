@@ -100,8 +100,9 @@ const MemoryCard = ({ setHasWon, playerNames, setWinnerName }) => {
   useEffect(() => {
     if (hasWon) {
       setHasWon(true); // notify parent component that the game is won
-      const winner = players.reduce((a, b) => (a.score > b.score ? a : b));
+      const winner = players.reduce((a, b) => (a.score >= b.score ? a : b));
       setWinnerName(winner.name); // display this in WinnerMessage
+      //the >= will ensure if there is a tie - the 1st player will win
     }
   }, [hasWon, players]); // you don't need to add the setHasWon dependency, but it's a good practice to include all dependencies that are used in the effect.
 
