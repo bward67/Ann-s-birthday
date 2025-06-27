@@ -1,14 +1,14 @@
 const data = [
-  { name: "Milo", image: "Milo.jpg" },
-  { name: "Arthur", image: "Arthur.jpg" },
-  { name: "Kit", image: "Kit.jpg" },
-  { name: "June", image: "June.jpg" },
-  { name: "Finn", image: "Finn.jpg" },
-  { name: "Lou", image: "Lou.jpg" },
-  { name: "Felix", image: "Felix.jpg" },
-  { name: "Owen", image: "Owen.jpg" },
-  { name: "Casey", image: "Casey.jpg" },
-  { name: "Grandma & Grandpa", image: "Grandma and Grandpa.jpg" },
+  { name: "Mighty Milo", image: "Milo.jpg" },
+  { name: "Awesome Arthur", image: "Arthur.jpg" },
+  { name: "Kool-Dude Kit", image: "Kit.jpg" },
+  { name: "Jazzy June", image: "June.jpg" },
+  { name: "First-Class Finn", image: "Finn.jpg" },
+  { name: "Legendary Lou", image: "Lou.jpg" },
+  { name: "Fearless Felix", image: "Felix.jpg" },
+  { name: "Outstanding Owen", image: "Owen.jpg" },
+  { name: "Charismatic Casey", image: "Casey.jpg" },
+  { name: "Glamorous Grandma & Grandpa", image: "Grandma and Grandpa.jpg" },
 ];
 
 export default data;

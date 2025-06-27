@@ -29,7 +29,7 @@ body {
   height: 100%;
 }
 h1 {
-  color: var(--var-primary);
+  color: var(--var-purple);
   margin-bottom: 1rem;
 }
 h2 {
@@ -109,12 +109,12 @@ h4 span {
   font-size: 3rem;
 }
 .card {
-  /* width: 7rem;
-  height: 7rem; */
+  width: 8rem;
+  height: 8rem;
   object-fit: contain;
   overflow: hidden;
   cursor: pointer;
-  perspective: 600px;
+  perspective: 1000px;
   /* border: 8px solid blueviolet; */
   transition: all 0.4s ease;
   border-radius: var(--var-br-main);
@@ -136,13 +136,15 @@ h4 span {
 }
 .card img {
   border-radius: inherit;
+  display: block;
+  backface-visibility: hidden;
 }
 
 .card img,
 .card .card-back {
-  /* position: absolute;
+  position: absolute;
   top: 0;
-  left: 0; */
+  left: 0;
   object-fit: cover;
   object-position: center;
   width: 100%;

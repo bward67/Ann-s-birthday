@@ -7,7 +7,7 @@ const LastMatchMessageModal = ({
   cards,
   matched,
 }) => {
-  if (!showModal || hasWon || lastMatch === null) return null;
+  if (!showModal || hasWon || !lastMatch) return null;
 
   //console.log(cards);
   //! b/c of the shuffling I must use the ID and not the index in cards

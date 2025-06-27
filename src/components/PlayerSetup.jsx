@@ -51,6 +51,7 @@ const PlayerSetup = ({ setPlayerNames, setIsSetupComplete }) => {
                 value={name}
                 onChange={(e) => handleNameChange(index, e.target.value)}
                 placeholder={`Enter player ${index + 1} name`}
+                required
               />
             </label>
           </div>
