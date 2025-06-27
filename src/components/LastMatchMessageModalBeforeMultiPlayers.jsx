@@ -17,7 +17,7 @@ const LastMatchMessageModal = ({
     currentCard = cards.find((card) => card.id === currentMatchedId);
   }
 
-  //console.log(matched);
+  console.log(matched);
   //!LETS get the name of the person in the image in the h4
   return (
     <div className="last-match-message-modal">

@@ -36,6 +36,11 @@ h2 {
   font-size: 4rem;
   color: var(--var-red);
 }
+h3 {
+  color: var(--var-purple);
+  font-size: 1.5rem;
+  text-transform: uppercase;
+}
 h4 {
   font-size: 1rem;
   color: var(--var-white);
@@ -61,12 +66,25 @@ button {
   border-radius: 5px;
   font-size: 16px;
 }
+input,
+select {
+  margin-left: 0.5rem;
+  padding: 0.2rem;
+  border-radius: var(--var-br-main);
+  border: solid 1px var(--var-purple);
+  margin-bottom: 0.5rem;
+}
+input {
+  font-family: inherit;
+  padding: 0.4rem;
+}
+
 .grey-p {
   color: var(--var-grey);
 }
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
   gap: 10px;
   padding: 10px;
   margin: 1rem auto 1rem auto;
@@ -83,7 +101,7 @@ button {
   transform: translateX(-50%);
   /* width: 90%; */
   background-color: rgba(255, 255, 255, 0.9);
-  padding: 0.3rem;
+  padding: 0.3rem 1.5rem;
   border-radius: var(--var-br-main);
   z-index: 5;
 }
@@ -202,4 +220,16 @@ small {
 .bounce {
   display: inline-block;
   animation: bounce 0.5s ease-in-out infinite;
+}
+.winner-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.winner-message-btns {
+  display: flex;
+  gap: 3rem;
+}
+.winner-message-btns button {
+  line-height: 1.4;
 }

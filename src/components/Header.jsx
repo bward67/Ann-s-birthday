@@ -1,6 +1,6 @@
 import React from "react";
 
-const Header = ({ lastMatch }) => {
+const Header = () => {
   return (
     <>
       <h1>Welcome, Ann Hounjet, to your very own game of Pair Snair!</h1>
@@ -9,14 +9,6 @@ const Header = ({ lastMatch }) => {
         You might recognize some of these SUPER STARS who look like they may
         have special SUPER POWERS!
       </p>
-      {lastMatch === true && (
-        <h4 style={{ backgroundColor: "green" }}>That's a Pair - well done!</h4>
-      )}
-      {lastMatch === false && (
-        <h4 style={{ backgroundColor: "red" }}>
-          That's NOT a Pair - try again!
-        </h4>
-      )}
     </>
   );
 };

@@ -7,6 +7,7 @@ import Lou from "./assets/Lou.jpg";
 import Felix from "./assets/Felix.jpg";
 import Owen from "./assets/Owen.jpg";
 import Casey from "./assets/Casey.jpg";
+import Grandma_and_Grandpa from "./assets/Grandma and Grandpa.jpg";
 
 const images = {
   "Milo.jpg": Milo,
@@ -18,6 +19,7 @@ const images = {
   "Felix.jpg": Felix,
   "Owen.jpg": Owen,
   "Casey.jpg": Casey,
+  "Grandma and Grandpa.jpg": Grandma_and_Grandpa,
 };
 
 export default images;

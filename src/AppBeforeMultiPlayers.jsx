@@ -8,7 +8,7 @@ const shuffleArray = (array) => {
   return array.sort(() => Math.random() - 0.5);
 };
 
-const MemoryCard = ({ setHasWon, playerNames, setWinnerName }) => {
+const MemoryCard = ({ setHasWon }) => {
   // console.log(data);
 
   const [cards, setCards] = useState([]); // holds the full list of card objects(duplicated and shuffled)
@@ -18,10 +18,6 @@ const MemoryCard = ({ setHasWon, playerNames, setWinnerName }) => {
   const [mismatchedIds, setMismatchedIds] = useState([]);
   const [lastMatch, setLastMatch] = useState(null); //or true or false
   const [showModal, setShowModal] = useState(false);
-  const [players, setPlayers] = useState(
-    playerNames.map((name) => ({ name, score: 0 }))
-  );
-  const [currentPlayer, setCurrentPlayer] = useState(0); /// index into players array
 
   useEffect(() => {
     const doubled = [...data, ...data]; // to get 2 of each
@@ -69,13 +65,6 @@ const MemoryCard = ({ setHasWon, playerNames, setWinnerName }) => {
     if (card1.name === card2.name) {
       // we check the .name and not the .id b/c each card image appears twice but with different ID's
       setMatched((prev) => [...prev, card1.id, card2.id]); // this adds the 2 matched cards ID's (3, 7) to the matched array - which keeps track of cards that should stay visible and be unclickable ex. if the matchedarray already has 1, 4 - now we have [1, 4, 3, 7] so now card ID's 3 and 7 will stay face-up & unclickable
-      setPlayers((prevPlayers) =>
-        prevPlayers.map((player, index) =>
-          index === currentPlayer
-            ? { ...player, score: player.score + 1 }
-            : player
-        )
-      );
       setLastMatch(true);
       setTimeout(() => {
         setFlipped([]); // immediate reset b/c they are matched
@@ -89,7 +78,6 @@ const MemoryCard = ({ setHasWon, playerNames, setWinnerName }) => {
         setFlipped([]); // reset flipped cards after a delay - so they will be face down
         setMismatchedIds([]); // reset
         setDisabled(false); // unlock flipping so we can go again to find matches
-        setCurrentPlayer((prev) => (prev + 1) % players.length); // switch player
       }, 1200); // give the player time to see the cards shake
     }
   }, [flipped, cards]);
@@ -100,10 +88,8 @@ const MemoryCard = ({ setHasWon, playerNames, setWinnerName }) => {
   useEffect(() => {
     if (hasWon) {
       setHasWon(true); // notify parent component that the game is won
-      const winner = players.reduce((a, b) => (a.score > b.score ? a : b));
-      setWinnerName(winner.name); // display this in WinnerMessage
     }
-  }, [hasWon, players]); // you don't need to add the setHasWon dependency, but it's a good practice to include all dependencies that are used in the effect.
+  }, [hasWon, setHasWon]); // you don't need to add the setHasWon dependency, but it's a good practice to include all dependencies that are used in the effect.
 
   return (
     <>
@@ -114,22 +100,6 @@ const MemoryCard = ({ setHasWon, playerNames, setWinnerName }) => {
         cards={cards}
         matched={matched}
       />
-
-      <div className="scorecard">
-        {players.map((player, index) => (
-          <p
-            key={index}
-            style={{
-              fontWeight: index === currentPlayer ? "bold" : "normal",
-              color: index === currentPlayer ? "var(--var-purple)" : "#333",
-              fontSize: "2rem",
-              marginBlock: "1rem .5rem",
-            }}
-          >
-            {player.name}: {player.score}
-          </p>
-        ))}
-      </div>
       <ul className="card-grid">
         {cards.map((card) => {
           const isFlipped =

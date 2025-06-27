@@ -4,10 +4,16 @@ import WinnerMessage from "./components/WinnerMessage";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Confetti from "react-confetti"; // Importing the Confetti component
+import PlayerSetup from "./components/PlayerSetup";
 
 const App = () => {
   const [hasWon, setHasWon] = useState(false);
   const [gameKey, setGameKey] = useState(0); //! Each time you increment this key, React will fully re-render the MemoryCard component — which effectively resets all its state.
+
+  const [playerNames, setPlayerNames] = useState([]);
+  const [isSetupComplete, setIsSetupComplete] = useState(false);
+
+  const [winnerName, setWinnerName] = useState("");
 
   const currentYear = new Date().getFullYear();
 
@@ -82,12 +88,29 @@ const App = () => {
       )}
 
       {hasWon ? (
-        <WinnerMessage hasWon={hasWon} handlePlayAgain={handlePlayAgain} />
+        <WinnerMessage
+          hasWon={hasWon}
+          handlePlayAgain={handlePlayAgain}
+          winnerName={winnerName}
+          onGoToSetup={() => setIsSetupComplete(false)}
+        />
       ) : (
         <Header />
       )}
-      <MemoryCard key={gameKey} setHasWon={setHasWon} />
-      {/* setting a different key on a component forces it to unmount + remount which resets all its internal state. */}
+
+      {!isSetupComplete ? (
+        <PlayerSetup
+          setPlayerNames={setPlayerNames}
+          setIsSetupComplete={setIsSetupComplete}
+        />
+      ) : (
+        <MemoryCard
+          key={gameKey}
+          setHasWon={setHasWon}
+          playerNames={playerNames}
+          setWinnerName={setWinnerName}
+        />
+      )}
       <Footer currentYear={currentYear} />
     </div>
   );
