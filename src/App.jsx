@@ -27,6 +27,8 @@ const App = () => {
     ),
   });
 
+  const [showChangePlayersPrompt, setShowChangePlayersPrompt] = useState(false);
+
   useEffect(() => {
     function handleResize() {
       setDimensions({
@@ -48,7 +50,8 @@ const App = () => {
   function handlePlayAgain() {
     // console.log("Game started!");
     setGameKey((prev) => prev + 1); // Increment the key will trigger a full remount of the MemoryCard component
-    setHasWon(false); // Reset the win state whe the game restarts
+    setHasWon(false); // Reset the win state when the game restarts
+    setShowChangePlayersPrompt(true); // asks if they wnat to change/add players
   }
 
   useEffect(() => {
@@ -92,6 +95,35 @@ const App = () => {
       {hasWon && (
         // <Confetti />
         <Confetti width={dimensions.width} height={dimensions.height} />
+      )}
+      {showChangePlayersPrompt && (
+        <div className="change-players-prompt">
+          <p>Would you like to change players?</p>
+          <div className="winner-message-btns">
+            <button
+              className="play-again-btn"
+              onClick={() => {
+                setIsSetupComplete(false);
+                setHasWon(false);
+                setPlayerNames([]);
+                setWinnerName("");
+                setShowChangePlayersPrompt(false);
+              }}
+            >
+              Yes
+            </button>
+            <button
+              className="play-again-btn"
+              onClick={() => {
+                setGameKey((prev) => prev + 1);
+                setHasWon(false);
+                setShowChangePlayersPrompt(false);
+              }}
+            >
+              No
+            </button>
+          </div>
+        </div>
       )}
 
       {hasWon ? (
