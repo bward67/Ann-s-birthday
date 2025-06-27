@@ -80,6 +80,13 @@ const App = () => {
     };
   }, [hasWon]);
 
+  function handleGoToSetup() {
+    setIsSetupComplete(false);
+    setHasWon(false); // reset winner state
+    setWinnerName("");
+    setGameKey((prev) => prev + 1); // full reset
+  }
+
   return (
     <div>
       {hasWon && (
@@ -92,7 +99,7 @@ const App = () => {
           hasWon={hasWon}
           handlePlayAgain={handlePlayAgain}
           winnerName={winnerName}
-          onGoToSetup={() => setIsSetupComplete(false)}
+          onGoToSetup={handleGoToSetup}
         />
       ) : (
         <Header />
@@ -105,7 +112,7 @@ const App = () => {
         />
       ) : (
         <MemoryCard
-          key={gameKey}
+          key={gameKey} // ensures a fresh remount
           setHasWon={setHasWon}
           playerNames={playerNames}
           setWinnerName={setWinnerName}
