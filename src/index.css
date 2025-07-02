@@ -29,8 +29,9 @@ body {
   height: 100%;
 }
 h1 {
-  color: var(--var-purple);
-  margin-bottom: 1rem;
+  color: var(--var-white);
+  max-width: 26rem;
+  margin: 0 auto 1rem auto;
 }
 h2 {
   font-size: 4rem;
@@ -77,6 +78,13 @@ select {
 input {
   font-family: inherit;
   padding: 0.4rem;
+}
+
+header {
+  padding: 0.3rem 0.8rem;
+}
+.title {
+  background-color: var(--var-purple);
 }
 
 .grey-p {
