@@ -8,7 +8,7 @@ const data = [
   { name: "Fearless Felix", image: "Felix.jpg" },
   { name: "Outstanding Owen", image: "Owen.jpg" },
   { name: "Charismatic Casey", image: "Casey.jpg" },
-  { name: "Glamorous Grandma & Grandpa", image: "Grandma-and-Grandpa.jpg" },
+  { name: "Glamorous Grandma & Grandpa", image: "Grandma_and_Grandpa.jpg" },
 ];
 
 export default data;
