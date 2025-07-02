@@ -31,6 +31,13 @@ const MemoryCard = ({ setHasWon, playerNames, setWinnerName }) => {
         id: index, // we will need for unique keys
       }))
     );
+
+    //preload all images
+    shuffled.forEach((card) => {
+      const img = new Image();
+      img.src = images[card.image];
+    });
+
     setCards(shuffled);
   }, []);
 
