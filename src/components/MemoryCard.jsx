@@ -13,7 +13,7 @@ const MemoryCard = ({ setHasWon, playerNames, setWinnerName }) => {
 
   const [cards, setCards] = useState([]); // holds the full list of card objects(duplicated and shuffled)
   const [flipped, setFlipped] = useState([]); // holds ID's of flipped cards and the max length is 2 which is the player's current guess [3, 7]
-  const [matched, setMatched] = useState([]); // holds ID's of cards that have been sucessfully matched - once in here, a card stays visible and unclickable
+  const [matched, setMatched] = useState([]); // holds ID's of cards that have been successfully matched - once in here, a card stays visible and unclickable
   const [disabled, setDisabled] = useState(false); // to lock flipping while checking for matches
   const [mismatchedIds, setMismatchedIds] = useState([]);
   const [lastMatch, setLastMatch] = useState(null); //or true or false
@@ -146,8 +146,8 @@ const MemoryCard = ({ setHasWon, playerNames, setWinnerName }) => {
             <li
               key={card.id}
               className={`card ${isFlipped ? "flipped" : ""} ${
-                mismatchedIds.includes(card.id) ? "mismatchBounce" : ""
-              }`}
+                matched.includes(card.id) ? "matched" : ""
+              } ${mismatchedIds.includes(card.id) ? "mismatchBounce" : ""}`}
               onClick={() => handleFlipCard(card)}
             >
               {isFlipped ? (
